@@ -1,11 +1,13 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
+import ProductsItem from '../components/ProductsItem'
 
 const ProductsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text>ProductsScreen</Text>
-      <Button title='Go to Details' onPress={() => navigation.navigate("Details")} />
+      <View style={styles.productsContainer}>
+        <ProductsItem />
+      </View>
     </View>
   )
 }
@@ -18,4 +20,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    productsContainer:{
+      height: 150,
+      width: 150,
+    }
 })

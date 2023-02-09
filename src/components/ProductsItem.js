@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-const ProductsItem = () => {
+const ProductsItem = ({item, onSelected}) => {
   return (
-    <View style={styles.itemContainer}>
+    <TouchableOpacity style={styles.itemContainer} onPress={() => onSelected(item)}>
       <View style={styles.imageContainer}>
         <Image 
             style={styles.image} 
@@ -13,11 +13,11 @@ const ProductsItem = () => {
         />
       </View>
       <View style={styles.textContainer}>
-        <Text>Name</Text>
-        <Text>Description</Text>
-        <Text>Price</Text>
+        <Text>{item.name}</Text>
+        <Text>{item.description}</Text>
+        <Text>${item.price}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         flex: 1,
         borderRadius: 10,
         margin: 10,
+        padding: 20,
         shadowColor: 'black',
         shadowOpacity: 0.5,
         shadowOffset: {width: 0, height: 2},

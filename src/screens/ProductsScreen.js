@@ -1,14 +1,29 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { StyleSheet, Text, View, Button, FlatList } from 'react-native'
 import ProductsItem from '../components/ProductsItem'
+import { PRODUCTS } from '../data/products'
 
-const ProductsScreen = ({ navigation }) => {
+const ProductsScreen = ({ navigation, route }) => {
+
+  const newProducts = PRODUCTS.filter(
+    product => product.category === route.params.categoryId
+  )
+
+  const handleSelectedProduct = item => {
+    navigation.navigate('Details', {
+      name: item.name,
+    })
+  }
+
+  const renderProductItem = ({item}) => <ProductsItem item={item} onSelected={handleSelectedProduct}/>
+
   return (
-    <View style={styles.container}>
-      <View style={styles.productsContainer}>
-        <ProductsItem />
-      </View>
-    </View>
+      <FlatList 
+        data={newProducts} 
+        renderItem={renderProductItem} 
+        keyExtractor={(item) => item.id}
+        numColumns={2}
+      />
   )
 }
 

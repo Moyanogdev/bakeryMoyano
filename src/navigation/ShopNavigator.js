@@ -9,31 +9,37 @@ const Stack = createNativeStackNavigator()
 
 export default ShopNavigator = () => {
     return (
-        <NavigationContainer>
-            <Stack.Navigator 
-                initialRouteName="Categories" 
-                screenOptions={{
-                    headerStyle: {backgroundColor: COLORS.primary},
-                    headerTintColor: COLORS.secondary,
-                    headerTitleStyle: {
-                        fontWeight: 'bold',
-                    },
-                }}>
-                <Stack.Screen 
-                    name="Categories" 
-                    component={CategoriesScreen} 
-                    options={{
-                        title: 'My Bakery',
-                    }}/>
-                <Stack.Screen 
-                    name="Products" 
-                    component={ProductsScreen} 
-                    options={({route}) => ({
-                        title: route.params.title,
-                    })}/>
-                <Stack.Screen name="Details" component={DetailsScreen}/>
-            </Stack.Navigator>
-        </NavigationContainer>
+        <Stack.Navigator 
+            initialRouteName="Categories" 
+            screenOptions={{
+                headerStyle: {backgroundColor: COLORS.primary},
+                headerTintColor: COLORS.secondary,
+                headerTitleStyle: {
+                    fontWeight: 'bold',
+                },
+            }}>
+            <Stack.Screen 
+                name="Categories" 
+                component={CategoriesScreen} 
+                options={{
+                    title: 'My Bakery',
+                }}
+            />
+            <Stack.Screen 
+                name="Products" 
+                component={ProductsScreen} 
+                options={({route}) => ({
+                    title: route.params.title,
+                })}
+            />
+            <Stack.Screen 
+                name="Details" 
+                component={DetailsScreen}
+                options={({route}) => ({
+                    title: route.params.name,
+                })}
+            />
+        </Stack.Navigator>
     )
 }
 
